@@ -29,12 +29,10 @@ namespace SignalR.Castle.Windsor
 
 		public override IEnumerable<object> GetServices(Type serviceType)
 		{
-			IEnumerable<object> objects;
 			if (_container.Kernel.HasComponent(serviceType))
-				objects = _container.ResolveAll(serviceType).Cast<object>();
-			else
-				objects = new object[] { };
-			return objects.Concat(base.GetServices(serviceType));
+				return _container.ResolveAll(serviceType).Cast<object>();
+			
+			return base.GetServices(serviceType);
 		}
 	}
 }
