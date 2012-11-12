@@ -5,8 +5,8 @@ using System.Text;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Castle.MicroKernel.SubSystems.Configuration;
-using SignalR.Hubs;
 using System.Reflection;
+using Microsoft.AspNet.SignalR.Hubs;
 
 namespace SignalR.Castle.Windsor
 {

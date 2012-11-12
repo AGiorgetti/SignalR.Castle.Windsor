@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Castle.Windsor;
 using Castle.MicroKernel.Registration;
+using Microsoft.AspNet.SignalR;
 
 namespace SignalR.Castle.Windsor
 {
