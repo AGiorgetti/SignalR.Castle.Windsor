@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Castle.Windsor;
 using Castle.MicroKernel.Registration;
 using Microsoft.AspNet.SignalR;
@@ -54,10 +53,10 @@ namespace SignalR.Castle.Windsor
 		{
 			if (_container != null)
 				// cannot unregister components in windsor, so we use a trick
-				_container.Register(Component.For(serviceType).UsingFactoryMethod<object>(activator, true).OverridesExistingRegistration());
+				_container.Register(Component.For(serviceType).UsingFactoryMethod(activator, true).OverridesExistingRegistration());
 			else
 				// lazy registration for when the container is up
-				_lazyRegistrations.Add(Component.For(serviceType).UsingFactoryMethod<object>(activator));
+				_lazyRegistrations.Add(Component.For(serviceType).UsingFactoryMethod(activator));
 
 			// register the factory method in the default container too
 			//base.Register(serviceType, activator);
@@ -66,7 +65,7 @@ namespace SignalR.Castle.Windsor
 		// a form of laxy initialization is actually needed because the DefaultDependencyResolver starts initializing itself immediately
 		// while we now want to store everything inside CastleWindsor, so the actual registration step have to be postponed until the 
 		// container is available
-		private List<ComponentRegistration<object>> _lazyRegistrations = new List<ComponentRegistration<object>>();
+		private readonly List<ComponentRegistration<object>> _lazyRegistrations = new List<ComponentRegistration<object>>();
 	}
 
 	public static class WindsorTrickyExtensions

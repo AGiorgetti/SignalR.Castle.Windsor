@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Castle.MicroKernel.SubSystems.Configuration;
 using System.Reflection;
-using Microsoft.AspNet.SignalR.Hubs;
+using Microsoft.AspNet.SignalR;
 
 namespace SignalR.Castle.Windsor
 {
 	public class HubsInstallers : IWindsorInstaller
 	{
-		private FromAssemblyDescriptor _descriptor;
+		private readonly FromAssemblyDescriptor _descriptor;
 
 		/// <summary>
 		/// registers all the hubs contained in the passed in assembly
