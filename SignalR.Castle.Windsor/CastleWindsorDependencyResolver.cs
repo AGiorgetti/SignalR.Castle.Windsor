@@ -62,7 +62,7 @@ namespace SignalR.Castle.Windsor
 			//base.Register(serviceType, activator);
 		}
 
-		// a form of laxy initialization is actually needed because the DefaultDependencyResolver starts initializing itself immediately
+		// a form of lazy initialization is actually needed because the DefaultDependencyResolver starts initializing itself immediately
 		// while we now want to store everything inside CastleWindsor, so the actual registration step have to be postponed until the 
 		// container is available
 		private readonly List<ComponentRegistration<object>> _lazyRegistrations = new List<ComponentRegistration<object>>();
@@ -73,7 +73,7 @@ namespace SignalR.Castle.Windsor
 		/// <summary>
 		/// Overrideses the existing registration:
 		/// to overide an existiong component registration you need to do two things:
-		/// 1- give it a name.
+		/// 1- give it a name (we use a guid to guarantee uniqueness).
 		/// 2- set it as default.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>

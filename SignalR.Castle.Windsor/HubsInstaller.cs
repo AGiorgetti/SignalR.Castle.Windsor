@@ -17,7 +17,7 @@ namespace SignalR.Castle.Windsor
 		/// <param name="assembly">The assembly.</param>
 		public HubsInstallers(Assembly assembly)
 		{
-			_descriptor = AllTypes.FromAssembly(assembly);
+			_descriptor = Types.FromAssembly(assembly);
 		}
 
 		/// <summary>
@@ -26,7 +26,7 @@ namespace SignalR.Castle.Windsor
 		/// <param name="typeContainedInAssembly"></param>
 		public HubsInstallers(Type typeContainedInAssembly)
 		{
-			_descriptor = AllTypes.FromAssemblyContaining(typeContainedInAssembly);
+			_descriptor = Types.FromAssemblyContaining(typeContainedInAssembly);
 		}
 		
 		/// <summary>
@@ -35,7 +35,7 @@ namespace SignalR.Castle.Windsor
 		/// <param name="filter">The filter.</param>
 		public HubsInstallers(AssemblyFilter filter)
 		{
-			_descriptor = AllTypes.FromAssemblyInDirectory(filter);
+			_descriptor = Types.FromAssemblyInDirectory(filter);
 		}
 
 		/// <summary>
@@ -44,9 +44,14 @@ namespace SignalR.Castle.Windsor
 		/// <param name="assemblyName">Name of the assembly.</param>
 		public HubsInstallers(string assemblyName)
 		{
-			_descriptor = AllTypes.FromAssemblyNamed(assemblyName);
+			_descriptor = Types.FromAssemblyNamed(assemblyName);
 		}
 
+        /// <summary>
+        /// todo: first raw implementation... add options for lifestyle management, singleton might not be the best one 
+        /// </summary>
+        /// <param name="container"></param>
+        /// <param name="store"></param>
 		public void Install(IWindsorContainer container, IConfigurationStore store)
 		{
 			container.Register(_descriptor.BasedOn(typeof(Hub)));
